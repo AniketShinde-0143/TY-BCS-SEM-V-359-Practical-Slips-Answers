@@ -1,0 +1,71 @@
+Q. 1
+
+--> class Bank
+{
+private double balance;
+public Bank()
+{
+balance = 0;
+}
+public Bank(double initialBalance)
+{
+balance = initialBalance;
+}
+public void deposit(double amount)
+{
+balance = balance + amount;
+}
+public void withdraw(double amount)
+{
+balance = balance - amount;
+}
+public double getBalance()
+{
+return balance;
+}
+public static void main(String[] args)
+{
+Bank b = new Bank(1000);
+b.withdraw(250);
+System.out.println("the withdraw is:"+ b.balance);
+b.deposit(400);
+System.out.println("the deposit is:"+ b.balance);
+System.out.println("the balance is:"+ b.getBalance());
+}
+}
+
+Q. 2
+
+--> import java.io.*;
+import java.util.*;
+class ReverseFile
+{
+public static void main(String args[])throws IOException
+{
+Scanner sc = new Scanner(System.in);
+System.out.println("enter file name:");
+String fnm = sc.next();
+File f = new File(fnm);
+if(f.isFile())
+{
+BufferedInputStream bis = new BufferedInputStream(new
+FileInputStream(fnm));
+int size =bis.available();
+for(int i = size-1;i>=0;i--)
+{
+bis.mark(i);
+bis.skip(i);
+char ch=((char)bis.read());
+if(Character.isLowerCase(ch))
+ch=Character.toUpperCase(ch);
+else if(Character.isUpperCase(ch))
+ch = Character.toLowerCase(ch);
+System.out.print(ch);
+bis.reset();
+}
+bis.close();
+}
+else
+System.out.println("file not found");
+}
+}
